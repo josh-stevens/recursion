@@ -10,8 +10,13 @@ var stringifyJSON = function(obj) {
 
   if (Array.isArray(obj)) {
   	str = str.concat("[");
-  	_.each(obj, function(item) {
-  		str = str.concat(stringifyJSON(item));
+  	_.each(obj, function(item, index, arr) {
+  		if (index != arr.length - 1) {
+  			str = str.concat(stringifyJSON(item), ",");
+  		}
+  		else {
+  			str = str.concat(stringifyJSON(item));
+  		}
   	});
   	str = str.concat("]");
   	return str;

@@ -28,8 +28,13 @@ var stringifyJSON = function(obj) {
 
   else if (typeof(obj) == "object") {
   	str = str.concat("{");
+  	var keys = Object.keys(obj);
+
   	_.each(obj, function(value, key, list) {
-  		str = str.concat(stringifyJSON(key), ":", stringifyJSON(value));
+  		if (key == keys[keys.length-1]) {
+  			str = str.concat(stringifyJSON(key), ":", stringifyJSON(value));
+  		}
+  		else str = str.concat(stringifyJSON(key), ":", stringifyJSON(value), ",");
   	});
   	str = str.concat("}");
   	return str;

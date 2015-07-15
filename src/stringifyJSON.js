@@ -31,10 +31,13 @@ var stringifyJSON = function(obj) {
   	var keys = Object.keys(obj);
 
   	_.each(obj, function(value, key, list) {
-  		if (key == keys[keys.length-1]) {
-  			str = str.concat(stringifyJSON(key), ":", stringifyJSON(value));
+  		if (key !== undefined && value !== undefined && typeof(key) != "function"
+  			 && typeof(value) != "function") {
+  			if (key == keys[keys.length-1]) {
+  				str = str.concat(stringifyJSON(key), ":", stringifyJSON(value));
+  			}
+  			else str = str.concat(stringifyJSON(key), ":", stringifyJSON(value), ",");
   		}
-  		else str = str.concat(stringifyJSON(key), ":", stringifyJSON(value), ",");
   	});
   	str = str.concat("}");
   	return str;

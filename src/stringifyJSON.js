@@ -9,12 +9,11 @@ var stringifyJSON = function(obj) {
   var str = "";
 
   if (Array.isArray(obj)) {
-  	if (obj.length == 0) {
-  		return "[]";
-  	}
-  	str = str.concat("[",_.each(obj, function(item) {
-  		return stringifyJSON(item);
-  	}),"]");
+  	str = str.concat("[");
+  	_.each(obj, function(item) {
+  		str = str.concat(stringifyJSON(item));
+  	});
+  	str = str.concat("]");
   	return str;
   }
 

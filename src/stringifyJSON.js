@@ -8,6 +8,16 @@ var stringifyJSON = function(obj) {
 
   var str = "";
 
+  if (Array.isArray(obj)) {
+  	if (obj.length == 0) {
+  		return "[]";
+  	}
+  	str.concat(_.each(obj, function(item) {
+  		stringifyJSON(item);
+  	}));
+  	return str;
+  }
+
   if (typeof(obj) == "string") {
   	return str.concat("\"",obj,"\"");
   }

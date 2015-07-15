@@ -5,4 +5,12 @@
 
 var stringifyJSON = function(obj) {
   // your code goes here
+
+  var str = "";
+
+  if (typeof(obj) == "string") {
+  	return str.concat("\"",obj,"\"");
+  }
+
+  return str.concat(obj);
 };

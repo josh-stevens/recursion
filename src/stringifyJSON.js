@@ -12,15 +12,17 @@ var stringifyJSON = function(obj) {
   	if (obj.length == 0) {
   		return "[]";
   	}
-  	str.concat(_.each(obj, function(item) {
-  		stringifyJSON(item);
-  	}));
+  	str = str.concat("[",_.each(obj, function(item) {
+  		return stringifyJSON(item);
+  	}),"]");
   	return str;
   }
 
   if (typeof(obj) == "string") {
-  	return str.concat("\"",obj,"\"");
+  	str = str.concat("\"",obj,"\"");
+  	return str;
   }
 
-  return str.concat(obj);
+  str = str.concat(obj);
+  return str;
 };

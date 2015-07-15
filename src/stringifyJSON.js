@@ -8,6 +8,10 @@ var stringifyJSON = function(obj) {
 
   var str = "";
 
+  if (obj == undefined || obj == null){
+  	return "null";
+  }
+
   if (Array.isArray(obj)) {
   	str = str.concat("[");
   	_.each(obj, function(item, index, arr) {
@@ -19,6 +23,15 @@ var stringifyJSON = function(obj) {
   		}
   	});
   	str = str.concat("]");
+  	return str;
+  }
+
+  else if (typeof(obj) == "object") {
+  	str = str.concat("{");
+  	_.each(obj, function(value, key, list) {
+  		str = str.concat(stringifyJSON(key), ":", stringifyJSON(value));
+  	});
+  	str = str.concat("}");
   	return str;
   }
 
